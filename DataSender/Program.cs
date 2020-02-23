@@ -26,7 +26,7 @@ namespace DataSender
             Socket socket = new Socket(SocketType.Stream, ProtocolType.Tcp);
             socket.Connect(IP, 420);
 
-            //Except does not worth with this???
+            //Except does not work with this???
             byte[] fname = Encoding.ASCII.GetBytes(new string(file.Name.ToSlug("_", new UnidecodeStrategy()).Replace(' ', '_').Where(x => !Path.GetInvalidFileNameChars().Contains(x)).ToArray()));
             socket.Send(BitConverter.GetBytes(fname.Length));
             socket.Send(fname);
