@@ -8,7 +8,7 @@ namespace DownloadsManagerService
 {
     class Program
     {
-        private static readonly DirectoryInfo downloads = new DirectoryInfo("storage/cdn/files/downloads");
+        private static readonly DirectoryInfo downloads = new DirectoryInfo("/storage/files/downloads");
 
 
         static void Main(string[] args)
