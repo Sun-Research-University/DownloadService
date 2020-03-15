@@ -1,3 +1,3 @@
-# DownloadService [DEPERCATED INTERNALLY]
+# DownloadsManager
 
-Internal server code for quick automated file uploads.
+Internal server code for quick automated file cleanup.
