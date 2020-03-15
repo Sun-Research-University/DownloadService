@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace DownloadManagerService
+namespace DownloadsManagerService
 {
     public static class Utils
     {

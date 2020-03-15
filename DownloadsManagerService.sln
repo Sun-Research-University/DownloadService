@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DownloadManagerService", "DownloadManagerService.csproj", "{F0AFAEBE-947B-4A4F-B156-C07FB0433FD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DownloadsManagerService", "DownloadsManagerService.csproj", "{F0AFAEBE-947B-4A4F-B156-C07FB0433FD5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E83DAFEC-70C1-413C-BCB2-F64648BFE61F}"
 	ProjectSection(SolutionItems) = preProject
