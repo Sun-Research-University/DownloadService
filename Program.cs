@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,6 @@ namespace DownloadsManagerService
     class Program
     {
         private static readonly DirectoryInfo downloads = new DirectoryInfo("/storage/files/downloads");
-
 
         static void Main(string[] args)
         {
@@ -26,10 +26,8 @@ namespace DownloadsManagerService
         {
             while (true)
             {
-                foreach (FileInfo file in from FileInfo file in downloads.EnumerateFilesRecursively().ToArray()
-                                          let time = DateTime.Now - file.CreationTime
-                                          where time >= TimeSpan.FromDays(3)
-                                          select file)
+                IEnumerable<FileInfo> Files = downloads.EnumerateFilesRecursively().Where(x => (DateTime.UtcNow - x.LastAccessTimeUtc) >= TimeSpan.FromDays(3));
+                foreach (FileInfo file in Files)
                 {
                     try
                     {
@@ -38,10 +36,25 @@ namespace DownloadsManagerService
                     catch
                     {
                         Console.WriteLine($"Failed to remove {file.FullName}!");
+                        continue;
                     }
-                    Console.WriteLine($"{file.Name} removed!");
+                    Console.WriteLine($"{file.FullName} removed!");
                 }
 
+                IEnumerable<DirectoryInfo> Directories = downloads.EnumerateDirectories("*", SearchOption.AllDirectories).Where(x => x.EnumerateFilesRecursively().Count() != 0);
+                foreach (DirectoryInfo directory in Directories)
+                {
+                    try
+                    {
+                        directory.Delete();
+                    }
+                    catch
+                    {
+                        Console.WriteLine($"Failed to remove {directory.FullName}!");
+                        continue;
+                    }
+                    Console.WriteLine($"{directory.FullName} removed!");
+                }
                 Thread.Sleep(TimeSpan.FromHours(1));
             }
         }
