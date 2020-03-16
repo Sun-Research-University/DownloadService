@@ -41,7 +41,7 @@ namespace DownloadsManagerService
                     Console.WriteLine($"{file.FullName} removed!");
                 }
 
-                IEnumerable<DirectoryInfo> Directories = downloads.EnumerateDirectories("*", SearchOption.AllDirectories).Where(x => x.EnumerateFilesRecursively().Count() != 0);
+                IEnumerable<DirectoryInfo> Directories = downloads.EnumerateDirectories("*", SearchOption.AllDirectories).Where(x => x.EnumerateFilesRecursively().Count() == 0 && (DateTime.UtcNow - x.LastAccessTimeUtc) >= TimeSpan.FromDays(3));
                 foreach (DirectoryInfo directory in Directories)
                 {
                     try
